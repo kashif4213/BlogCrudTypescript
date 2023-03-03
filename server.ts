@@ -12,8 +12,11 @@ app.use(cookieParser())
 connectDB()
 
 app.use('/user', require('./routes/userRoutes'))
-
+app.use('/blog', require('./routes/blogRoutes'))
+app.use('/comment', require('./routes/commentRoutes'))
 app.use(errorHandler)
+
+
 app.listen(port, () => {
     console.log('app is listening at port ' + port)
 })

@@ -1,8 +1,8 @@
-import {Request, Response, NextFunction } from "express"
+import {Request, Response, NextFunction, RequestHandler } from "express"
 
-function myAsyncHandler(asyncFunction : any) {
+const myAsyncHandler: RequestHandler =(asyncFunction : any)=> {
 	return (req : Request, res : Response, next : NextFunction) => {
 		asyncFunction(req, res, next).catch(next)
 	}
 }
-module.exports = { myAsyncHandler }
+module.exports =  {myAsyncHandler} 

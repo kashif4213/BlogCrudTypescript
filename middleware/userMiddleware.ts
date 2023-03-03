@@ -19,7 +19,6 @@ const validateUser: RequestHandler = myAsyncHandler(async (req :Request, res : R
                     req.body.registeredUser = registeredUser[0]
                     next()
                 }
-                
             }
         }
         else if (req.path === '/logout') {
@@ -62,6 +61,7 @@ const verifyToken : RequestHandler = (req : Request, res :Response, next :NextFu
         const accessToken = req.cookies.jwt
         if (accessToken){
             if (jwt.verify(accessToken, 'mySecretKey')){
+               // console.log('I am here')
                 next()
             }
         }
