@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-const validator= require('validator')
+const validator = require('validator')
 const blogSchema = new Schema({
     title: {
         type: String,
@@ -9,7 +9,7 @@ const blogSchema = new Schema({
     description: {
         type: String,
         required: true,
-        validate: [(value : any) => {
+        validate: [(value: any) => {
             if (value.length > 100) {
                 return false;
             }
@@ -18,19 +18,19 @@ const blogSchema = new Schema({
             'Description is too Long'
         ]
     },
-    nLikes : {
-        type : Number,
-        required : true
+    nLikes: {
+        type: Number,
+        required: true
     },
     numComments: {
-        type : Number,
-        required : true
+        type: Number,
+        required: true
     },
-    Author : {
-        user : {
-            type : Schema.Types.ObjectId,
-            required : true,
-            ref : 'User'
+    Author: {
+        user: {
+            type: Schema.Types.ObjectId,
+            required: true,
+            ref: 'User'
         }
     }
 }, {

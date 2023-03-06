@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction, RequestHandler } from "express"
+import { Request, Response, NextFunction, RequestHandler } from "express"
 
 const { myAsyncHandler } = require("../asyncHandler")
 const User = require("../models/userModel")
@@ -6,7 +6,7 @@ const { addUserValidationSchema, loginUserValidationSchema, logoutUserValidation
 const jwt = require('jsonwebtoken')
 
 
-const validateUser: RequestHandler = myAsyncHandler(async (req :Request, res : Response, next :NextFunction) => {
+const validateUser: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (req.path === '/register') {
             const value = await addUserValidationSchema.validateAsync(req.body)
@@ -15,7 +15,7 @@ const validateUser: RequestHandler = myAsyncHandler(async (req :Request, res : R
                 if (registeredUser.length > 0) {
                     return res.status(404).json({ message: 'This User is already Registered.' })
                 }
-                if (req.body.confirmPassword && req.body.password === req.body.confirmPassword){
+                if (req.body.confirmPassword && req.body.password === req.body.confirmPassword) {
                     req.body.registeredUser = registeredUser[0]
                     next()
                 }
@@ -24,19 +24,19 @@ const validateUser: RequestHandler = myAsyncHandler(async (req :Request, res : R
         else if (req.path === '/logout') {
             const value = await logoutUserValidationSchema.validateAsync(req.body)
             if (value) {
-                next()        
+                next()
             }
         }
-        else if (req.path == '/resetPassword'){
+        else if (req.path == '/resetPassword') {
             const value = await addUserValidationSchema.validateAsync(req.body)
             if (value) {
-                let registeredUser = await User.find({ email: req.body.email, firstName: req.body.firstName, lastName : req.body.lastName })
+                let registeredUser = await User.find({ email: req.body.email, firstName: req.body.firstName, lastName: req.body.lastName })
                 if (registeredUser.length < 0) {
                     return res.status(404).json({ message: 'Sorry, No such User is found.' })
                 }
-                req.body.registeredUser= registeredUser[0]
-                next()     
-            } 
+                req.body.registeredUser = registeredUser[0]
+                next()
+            }
         }
         else if (req.path === '/login') {
             const value = await loginUserValidationSchema.validateAsync(req.body)
@@ -56,18 +56,18 @@ const validateUser: RequestHandler = myAsyncHandler(async (req :Request, res : R
 })
 
 
-const verifyToken : RequestHandler = (req : Request, res :Response, next :NextFunction) => {
+const verifyToken: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
     try {
         const accessToken = req.cookies.jwt
-        if (accessToken){
-            if (jwt.verify(accessToken, 'mySecretKey')){
-               // console.log('I am here')
+        if (accessToken) {
+            if (jwt.verify(accessToken, 'mySecretKey')) {
+                // console.log('I am here')
                 next()
             }
         }
-        else{ 
-            res.status(400).json({message : 'Please Log In to Continue'})
-        }     
+        else {
+            res.status(400).json({ message: 'Please Log In to Continue' })
+        }
     } catch (error) {
         next(error)
     }

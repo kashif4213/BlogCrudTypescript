@@ -8,6 +8,6 @@ const User = require('../models/userModel')
 userRouter.route('/register').post(validateUser, registerUser)
 userRouter.route('/login').post(validateUser, loggedInUser)
 userRouter.route('/resetPassword').post(validateUser, resetPassword)
-userRouter.route('/logout').post(verifyToken,validateUser, loggedOutUser)
+userRouter.route('/logout').post(verifyToken, validateUser, loggedOutUser)
 
 module.exports = userRouter;

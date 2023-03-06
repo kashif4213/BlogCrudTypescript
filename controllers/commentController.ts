@@ -1,10 +1,10 @@
-import {Request, Response, NextFunction, RequestHandler } from "express";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 
 const Comment = require('../models/CommentModel');
 const { myAsyncHandler } = require('../asyncHandler');
 const { commentValidationSchema } = require('../validations/commentValidationSchema');
 
-const getComments : RequestHandler = myAsyncHandler(async (req : Request, res : Response, next : NextFunction) => {
+const getComments: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         let comments = await Comment.find()
         return res.status(200).json(comments)
@@ -14,7 +14,7 @@ const getComments : RequestHandler = myAsyncHandler(async (req : Request, res : 
     }
 })
 
-const createComment : RequestHandler = myAsyncHandler(async (req : Request, res : Response, next : NextFunction) => {
+const createComment: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         let tempComment = await Comment.create(req.body.comment)
         return res.status(201).json(tempComment)
@@ -25,7 +25,7 @@ const createComment : RequestHandler = myAsyncHandler(async (req : Request, res 
 })
 
 
-const updateComment : RequestHandler = myAsyncHandler(async (req : Request, res : Response, next : NextFunction) => {
+const updateComment: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         await req.body.comment.save()
         return res.status(200).json(req.body.comment)
@@ -35,10 +35,10 @@ const updateComment : RequestHandler = myAsyncHandler(async (req : Request, res 
     }
 })
 
-const deleteComment: RequestHandler = myAsyncHandler(async (req : Request, res : Response, next : NextFunction) => {
+const deleteComment: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         await req.body.comment.remove()
-        console.log('this is  the item id deleted ',req.body.comment )
+        console.log('this is  the item id deleted ', req.body.comment)
         return res.status(200).json(req.body.comment._id)
     }
     catch (error) {

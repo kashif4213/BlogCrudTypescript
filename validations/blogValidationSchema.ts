@@ -1,8 +1,8 @@
 import { Schema } from "joi"
 
-const Joi  = require('joi')
+const Joi = require('joi')
 
-const addBlogValidationSchema : Schema = Joi.object({
+const addBlogValidationSchema: Schema = Joi.object({
     title: Joi.string()
         .alphanum()
         .min(3)
@@ -12,15 +12,15 @@ const addBlogValidationSchema : Schema = Joi.object({
         .min(3)
         .max(100)
         .required(),
-    nLikes : Joi.number()
-    .required(),
-    numComments : Joi.number()
-    .required(),
-    Author : Joi.object({
-        user : Joi.string().required()
+    nLikes: Joi.number()
+        .required(),
+    numComments: Joi.number()
+        .required(),
+    Author: Joi.object({
+        user: Joi.string().required()
     })
-    
-    
+
+
 })
 
-module.exports =     addBlogValidationSchema
+module.exports = addBlogValidationSchema

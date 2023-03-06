@@ -1,9 +1,9 @@
-import {Request, Response, NextFunction, RequestHandler } from "express";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 
 const Blog = require('../models/blogModel');
 const { myAsyncHandler } = require('../asyncHandler');
 
-const getModels : RequestHandler = myAsyncHandler(async (req : Request, res : Response, next : NextFunction) => {
+const getModels: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         let blogs = await Blog.find()
         return res.status(200).json(blogs)
@@ -14,7 +14,7 @@ const getModels : RequestHandler = myAsyncHandler(async (req : Request, res : Re
 })
 
 
-const createModel : RequestHandler = myAsyncHandler(async (req : Request, res : Response, next : NextFunction) => {
+const createModel: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         let tempBlog = await Blog.create(req.body.blog)
         return res.status(201).json(tempBlog)
@@ -25,7 +25,7 @@ const createModel : RequestHandler = myAsyncHandler(async (req : Request, res : 
 })
 
 
-const updateModel : RequestHandler = myAsyncHandler(async (req : Request, res : Response, next : NextFunction) => {
+const updateModel: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         console.log('I was here before error', req.body.blog)
         //let updatedBlog :any = req.body.blog
@@ -37,7 +37,7 @@ const updateModel : RequestHandler = myAsyncHandler(async (req : Request, res : 
     }
 })
 
-const deleteModel: RequestHandler = myAsyncHandler(async (req : Request, res : Response, next : NextFunction) => {
+const deleteModel: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         await req.body.blog.remove()
         return res.status(200).json(req.params.id)
