@@ -18,7 +18,6 @@ const commentMiddleware: RequestHandler = myAsyncHandler(async (req: Request, re
 })
 
 const commentMiddlewareUpdateDelete: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-    //console.log('I am here', req.params.id)
     try {
         let { blog, description, Author } = req.body
         req.body.comment = await Comment.findById(req.params.id)
