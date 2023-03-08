@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 const validator = require('validator')
-const blogSchema = new Schema({
+const blogSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -28,7 +28,7 @@ const blogSchema = new Schema({
     },
     Author: {
         user: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'User'
         }
@@ -37,4 +37,4 @@ const blogSchema = new Schema({
     timestamps: true
 })
 
-module.exports = model('Blog', blogSchema)
+export default mongoose.model("Blog", blogSchema)

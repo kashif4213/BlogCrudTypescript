@@ -38,7 +38,6 @@ const updateComment: RequestHandler = myAsyncHandler(async (req: Request, res: R
 const deleteComment: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         await req.body.comment.remove()
-        console.log('this is  the item id deleted ', req.body.comment)
         return res.status(200).json(req.body.comment._id)
     }
     catch (error) {

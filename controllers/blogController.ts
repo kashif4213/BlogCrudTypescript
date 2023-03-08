@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
 
-const Blog = require('../models/blogModel');
+import Blog from '../models/blogModel'
 const { myAsyncHandler } = require('../asyncHandler');
 
 const getModels: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
@@ -46,9 +46,6 @@ const deleteModel: RequestHandler = myAsyncHandler(async (req: Request, res: Res
         next(error)
     }
 })
-
-//const BlogParamHandler: RequestHandler = 
-
 
 module.exports = {
     getModels,

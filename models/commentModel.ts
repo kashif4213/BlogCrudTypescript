@@ -1,8 +1,8 @@
-import { Schema, model } from "mongoose";
-let mongoose = require('mongoose')
-const commentSchema = new Schema({
+import mongoose from "mongoose";
+
+const commentSchema = new mongoose.Schema({
     blog: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Blog'
     },
@@ -12,7 +12,7 @@ const commentSchema = new Schema({
     },
     Author: {
         user: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'User'
         }
@@ -21,13 +21,5 @@ const commentSchema = new Schema({
 }, {
     timestamps: true
 })
-var Comment;
 
-if (mongoose.models.Comment) {
-    Comment = mongoose.model('Comment');
-} else {
-    Comment = mongoose.model('Comment', commentSchema);
-}
-
-module.exports = Comment;
-//module.exports = model('Comment', commentSchema)
+export default mongoose.model("Comment",commentSchema)

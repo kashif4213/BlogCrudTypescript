@@ -1,8 +1,8 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 const validator = require('validator')
 const bcrypt = require('bcrypt')
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true
@@ -33,4 +33,4 @@ userSchema.pre('save', async function (next) {
     }
 })
 
-module.exports = model('User', userSchema)
+module.exports = mongoose.model('User', userSchema)
