@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
-const { connectDB } = require('./config/db')
-const { errorHandler } = require('./middleware/errorMiddleware')
-const cookieParser = require('cookie-parser')
+import  connectDB from './config/db'
+import  errorHandler from './middleware/errorMiddleware'
+import cookieParser from 'cookie-parser'
 
 const app: Express = express();
 const port: Number = 5000

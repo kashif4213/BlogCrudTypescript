@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi'
 
 const addUserValidationSchema = Joi.object({
     firstName: Joi.string()
@@ -36,7 +36,7 @@ const logoutUserValidationSchema = Joi.object({
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required()
 })
 
-module.exports = {
+export default {
     addUserValidationSchema,
     loginUserValidationSchema,
     logoutUserValidationSchema

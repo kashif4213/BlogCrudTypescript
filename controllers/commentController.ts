@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
+import Comment from '../models/CommentModel'
 
-const Comment = require('../models/CommentModel');
 const { myAsyncHandler } = require('../asyncHandler');
-const { commentValidationSchema } = require('../validations/commentValidationSchema');
 
 const getComments: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -47,7 +46,7 @@ const deleteComment: RequestHandler = myAsyncHandler(async (req: Request, res: R
 
 //const commentParamHandler: RequestHandler = 
 
-module.exports = {
+export default {
     getComments,
     createComment,
     updateComment,

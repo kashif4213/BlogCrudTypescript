@@ -1,6 +1,6 @@
 import { Schema } from "joi"
+import Joi from 'joi'
 
-const Joi = require('joi')
 
 const commentValidationSchema: Schema = Joi.object({
     blog: Joi.string()
@@ -14,4 +14,4 @@ const commentValidationSchema: Schema = Joi.object({
     })
 })
 
-module.exports = commentValidationSchema
+export default commentValidationSchema

@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction, RequestHandler } from "express"
+import commentValidationSchema from '../validations/commentValidationSchema'
+import Comment from '../models/commentModel'
+
 let { myAsyncHandler } = require('../asyncHandler')
-const commentValidationSchema = require('../validations/commentValidationSchema')
-const Comment = require('../models/commentModel')
 
 const commentMiddleware: RequestHandler = myAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -46,7 +47,7 @@ const commentMiddlewareUpdateDelete: RequestHandler = myAsyncHandler(async (req:
 
 
 
-module.exports = {
+export default {
     commentMiddleware,
     commentMiddlewareUpdateDelete
 }

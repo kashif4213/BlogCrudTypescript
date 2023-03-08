@@ -1,11 +1,13 @@
-const { createComment, getComments, updateComment, deleteComment } = require('../controllers/commentController')
-const { commentMiddleware, commentMiddlewareUpdateDelete } = require('../middleware/commentMiddleware')
-let commentRouter = require('express').Router()
-let commentMiddleware2 = require('../middleware/userMiddleware')
+import commentController from '../controllers/commentController'
+import commentMiddleware from '../middleware/commentMiddleware'
+import express from 'express'
+import userMiddleware from '../middleware/userMiddleware'
 
-commentRouter.route('/').get(commentMiddleware2.verifyToken, getComments).post(commentMiddleware2.verifyToken, commentMiddleware, createComment)
+let commentRouter = express.Router()
 
-commentRouter.route('/:id').put(commentMiddleware2.verifyToken, commentMiddlewareUpdateDelete, updateComment).delete(commentMiddleware2.verifyToken, commentMiddlewareUpdateDelete, deleteComment)
+commentRouter.route('/').get(userMiddleware.verifyToken, commentController.getComments).post(userMiddleware.verifyToken, commentMiddleware.commentMiddleware, commentController.createComment)
+
+commentRouter.route('/:id').put(userMiddleware.verifyToken, commentMiddleware.commentMiddlewareUpdateDelete, commentController.updateComment).delete(userMiddleware.verifyToken, commentMiddleware.commentMiddlewareUpdateDelete, commentController.deleteComment)
 
 //commentRouter.param("id", commentMiddleware2.verifyToken, commentParamHandler)
 

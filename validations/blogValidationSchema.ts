@@ -23,4 +23,4 @@ const addBlogValidationSchema: Schema = Joi.object({
 
 })
 
-module.exports = addBlogValidationSchema
+export default addBlogValidationSchema

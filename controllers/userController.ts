@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
+import User from '../models/userModel'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const { myAsyncHandler } = require('../asyncHandler')
-const User = require('../models/userModel')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 
 
 // Register a new User
@@ -71,7 +71,6 @@ const createToken = (_id: String, sk: String, res: Response, next: NextFunction)
 }
 
 
-
-module.exports = {
+export default {
     registerUser, loggedInUser, resetPassword, loggedOutUser
 }

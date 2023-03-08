@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction, RequestHandler } from "express"
-import { Schema } from "joi"
+import addBlogValidationSchema from '../validations/blogValidationSchema'
+import Blog from '../models/blogModel'
+
 let { myAsyncHandler } = require('../asyncHandler')
-const addBlogValidationSchema = require('../validations/blogValidationSchema')
-const Blog = require('../models/blogModel');
 
 
 const getBlogMiddleware: RequestHandler = (async (req: Request, res: Response, next: NextFunction) => {
@@ -48,7 +48,7 @@ const blogMiddlewareUpdateDelete: RequestHandler = myAsyncHandler(async (req: Re
     }
 })
 
-module.exports = {
+export default {
     getBlogMiddleware,
     blogMiddlewareUpdateDelete
 }

@@ -1,13 +1,12 @@
-const express = require('express')
-const { registerUser, loggedInUser, resetPassword, loggedOutUser } = require('../controllers/userController')
-let { validateUser, verifyToken } = require('../middleware/userMiddleware')
+import express from 'express'
+import userController from '../controllers/userController'
+import userMiddleware  from '../middleware/userMiddleware'
+
 let userRouter = express.Router()
-const User = require('../models/userModel')
 
+userRouter.route('/register').post(userMiddleware.validateUser, userController.registerUser)
+userRouter.route('/login').post(userMiddleware.validateUser, userController.loggedInUser)
+userRouter.route('/resetPassword').post(userMiddleware.validateUser, userController.resetPassword)
+userRouter.route('/logout').post(userMiddleware.verifyToken, userMiddleware.validateUser, userController.loggedOutUser)
 
-userRouter.route('/register').post(validateUser, registerUser)
-userRouter.route('/login').post(validateUser, loggedInUser)
-userRouter.route('/resetPassword').post(validateUser, resetPassword)
-userRouter.route('/logout').post(verifyToken, validateUser, loggedOutUser)
-
-module.exports = userRouter;
+export default userRouter

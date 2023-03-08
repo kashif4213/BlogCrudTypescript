@@ -8,6 +8,4 @@ const errorHandler: ErrorRequestHandler = (err: any, req: Request, res: Response
     }
 }
 
-module.exports = {
-    errorHandler
-}
+export default  errorHandler
